@@ -2,7 +2,6 @@
 
 Online Password Manager with Version Control
 
-<center>
 | Technology used   |
 | :---------------: |
 | HTML              |
@@ -11,6 +10,5 @@ Online Password Manager with Version Control
 | PHP               |
 | MySQL             |
 | Apache            |
-</center>
 
 Developed by Chandan Shakya and Sanisha Maharjan
