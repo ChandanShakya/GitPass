@@ -43,7 +43,7 @@
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                             <input id="username" name="username" type="text" class="form-control" placeholder="Username">
                         </div>
-                        <div clas="error" id="username_error"></div>
+                        <div class="error" id="username_error"></div>
 
                         <label for="basic-url" class="form-label">Password</label>
                         <div class="input-group mb-3">
