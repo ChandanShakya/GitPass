@@ -26,6 +26,7 @@
                             .background-radial-gradient {
                                 background-color: hsl(218, 41%, 15%);
                                 background-image: radial-gradient(650px circle at 0% 0%, hsl(218, 41%, 35%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%), radial-gradient(1250px circle at 100% 100%, hsl(218, 41%, 45%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%);
+                            
                             }
                         </style>
                         <div class="container px-4 py-5 px-md-5 text-center text-lg-start">
@@ -52,7 +53,7 @@
                                 </div>
                                 <div class="col-lg-6 mb-5 mb-lg-0"> <img
                                         src="https://raw.githubusercontent.com/ZXY-CC-3ag13/GitPass/main/src/img/brand.svg"
-                                        class="w-100 rounded-4" alt="Logo" aria-controls="#picker-editor"> </div>
+                                        class="w-100 rounded-4" alt="Logo" aria-controls="#picker-editor" style="width:50vw;height:50vh"> </div>
                             </div>
                         </div>
                     </section>
