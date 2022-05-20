@@ -1,6 +1,6 @@
 # GitPass
 
-Online Password Manager with Version Control
+Simple Online Password Manager
 
 | Technology used   |
 | :---------------: |
