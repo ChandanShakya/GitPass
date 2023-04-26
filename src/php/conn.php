@@ -12,4 +12,5 @@ try {
 } catch (PDOException $e) {
     echo "An unknown error occurred: " . $e->getMessage();
 }
+// change to pdo
 ?>
