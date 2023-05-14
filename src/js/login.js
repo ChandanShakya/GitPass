@@ -1,30 +1,35 @@
-function validater() {
+function validateUsername() {
     var username = document.getElementById("form4Example1").value;
-    var password = document.getElementById("form4Example2").value;
-    var validu, validp;
-
-    if (username == "") {
+    if (username.trim() === "") {
         document.getElementById("div1").innerHTML = "Username is required";
         document.getElementById("form4Example1").style.borderColor = "red";
-        validu = false;
     } else {
         document.getElementById("div1").innerHTML = "";
         document.getElementById("form4Example1").style.borderColor = "green";
-        validu = true;
     }
-    if (password == "") {
+}
+
+function validatePassword() {
+    var password = document.getElementById("form4Example2").value;
+    if (password.trim() === "") {
         document.getElementById("div2").innerHTML = "Password is required";
         document.getElementById("form4Example2").style.borderColor = "red";
-        validp = false;
     } else {
         document.getElementById("div2").innerHTML = "";
         document.getElementById("form4Example2").style.borderColor = "green";
-        validp = true;
-    }
-    // Disable submit button until all field are filled
-    if (validu && validp) {
-        document.getElementById("send").disabled = false;
-    } else {
-        document.getElementById("send").disabled = true;
     }
 }
+
+function buttonEnabler() {
+    var username = document.getElementById("form4Example1").value;
+    var password = document.getElementById("form4Example2").value;
+    var submitButton = document.getElementById("send");
+    if (username.trim() !== "" && password.trim() !== "") {
+        submitButton.disabled = false;
+    } else {
+        submitButton.disabled = true;
+    }
+}
+
+// Disable submit button on page load
+submitButton.disabled = true;
