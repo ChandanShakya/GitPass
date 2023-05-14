@@ -11,4 +11,4 @@ Simple Online Password Manager
 | MySQL             |
 | Apache            |
 
-Developed by Chandan Shakya and Sanisha Maharjan
+Developed by ZXY-CC-3ag13
