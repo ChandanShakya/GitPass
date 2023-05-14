@@ -1,13 +1,10 @@
 <?php
-$host = 'mysql-server';
-$user = 'root';
-$password = 'secret';
-$database = 'id18657476_gitpass';
+require_once 'config.php';
 
-$dsn = "mysql:host=$host;dbname=$database;charset=utf8mb4";
+$dsn = "mysql:host={$config['host']};dbname={$config['database']};charset=utf8mb4";
 
 try {
-    $conn = new PDO($dsn, $user, $password);
+    $conn = new PDO($dsn, $config['user'], $config['password']);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo "An unknown error occurred: " . $e->getMessage();

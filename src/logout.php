@@ -1,19 +1,15 @@
 <?php 
     session_start();
-    if(isset($_SESSION['unique_id'])) {
-        if(isset($_GET['id'])) {
-            $id = $_GET['id'];
-            if($id == $_SESSION['unique_id']) {
-                session_unset();
-                session_destroy();
-                header("Location:login.php");
-            } else {
-                header("Location:index.php");
-            }
-        } else {
-            header("Location:index.php");
-        }
+    require_once "php/conn.php";
+
+    if(isset($_SESSION['unique_id']) && isset($_GET['id']) && $_GET['id'] === $_SESSION['unique_id']) {
+        $id = $_GET['id'];
+        session_unset();
+        session_destroy();
+        header("Location: login.php");
+        exit();
     } else {
-        header("Location:login.php");
+        header("Location: index.php");
+        exit();
     }
 ?>
