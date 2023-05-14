@@ -1,2 +1,5 @@
 src/php/conn_copy.php
+src/php/config.php
 src/old/
+src/php/encrypt.php
+src/php/decrypt.php
