@@ -50,7 +50,7 @@ include_once "php/conn.php";
           <!-- Features -->
           <div class="container">
             <div class="d-flex justify-content-center text-center pt-5">
-              <div class="p-4 rounded-6 shadow-3-strong w-75 mt-5" style="background-color: hsla(0, 0%, 100%, 0.8) !important; backdrop-filter: saturate(200%) blur(25px);;">
+              <div class="p-4 rounded-6 shadow-3-strong w-75 mt-5" style="background-color: hsla(0, 0%, 100%, 0.8) !important; backdrop-filter: saturate(200%) blur(25px);">
 
                 <div class="mb-4 mb-lg-0 position-relative"> <a href="home.php"><img src="https://raw.githubusercontent.com/ZXY-CC-3ag13/GitPass/main/src/img/brand.svg" class="text-primary" alt="Logo" aria-controls="#picker-editor" style="width:5em;"> </a></div>
 
