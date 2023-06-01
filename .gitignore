@@ -3,3 +3,4 @@ src/php/config.php
 src/old/
 src/php/encrypt.php
 src/php/decrypt.php
+src/php/server.php
