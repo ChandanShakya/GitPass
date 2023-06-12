@@ -22,7 +22,7 @@ CREATE TABLE
         title VARCHAR(255) NOT NULL,
         site VARCHAR(255) NOT NULL,
         username VARCHAR(100) NOT NULL,
-        password VARCHAR(100) NOT NULL,
+        password VARCHAR(300) NOT NULL,
         FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
         INDEX (user_id)
     );
