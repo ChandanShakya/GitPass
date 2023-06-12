@@ -97,13 +97,12 @@ include_once "php/conn.php";
                                                     $stmt->bindParam(':username', $username);
                                                     $stmt->bindParam(':password', $password);
                                                     $stmt->execute();
-
                                                     if ($stmt->rowCount() > 0) {
-                                                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                                                        $_SESSION['unique_id'] = $row['user_id'];
-                                                        //header("Location:index.php");
-                                                        echo "<meta http-equiv='refresh' content='0'>";
+                                                        echo "<meta http-equiv='refresh' content='0;url=login.php'>";
+                                                        exit();
                                                     }
+                                                    
+                                                    
                                                 }
                                             }
                                         }
