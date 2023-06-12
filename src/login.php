@@ -80,6 +80,8 @@ include_once "php/conn.php";
                         if ($stmt->rowCount() > 0) {
                           $row = $stmt->fetch(PDO::FETCH_ASSOC);
                           $_SESSION['unique_id'] = $row['user_id'];
+                          $_SESSION['username'] = $row['username'];
+                          $_SESSION['password'] = $row['password'];
                           //header("Refresh:0");
                           //header("Location:index.php");
                           echo "<meta http-equiv='refresh' content='0'>";

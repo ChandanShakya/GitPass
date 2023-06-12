@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = $_POST['password'];
   $userId = $_SESSION['unique_id'];
 
-  $stmt = $conn->prepare("INSERT INTO social_accounts(title, site, username, password, user_id) VALUES (:title, :site, :username, AES_ENCRYPT(:password, 'encryption_key'), :userId);");
+  $stmt = $conn->prepare("INSERT INTO social_accounts(title, site, username, password, user_id) VALUES (:title, :site, :username, :password, :userId);");
   $stmt->bindParam(':title', $title);
   $stmt->bindParam(':site', $site);
   $stmt->bindParam(':username', $username);
