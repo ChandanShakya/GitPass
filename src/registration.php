@@ -67,47 +67,47 @@ include_once "php/conn.php";
 
 
                                         <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+                                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                            $username = $_POST['username'];
+                                            $email = $_POST['email'];
+                                            $password = $_POST['password'];
 
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
-    $stmt->bindParam(':username', $username);
-    $stmt->execute();
+                                            $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
+                                            $stmt->bindParam(':username', $username);
+                                            $stmt->execute();
 
-    if ($stmt->rowCount() > 0) {
-        echo '<div class="alert alert-danger" role="alert" style="background-color: #2b5fb31f;">This username is already taken.</div>';
-    } else {
-        $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
+                                            if ($stmt->rowCount() > 0) {
+                                                echo '<div class="alert alert-danger" role="alert" style="background-color: #2b5fb31f;">This username is already taken.</div>';
+                                            } else {
+                                                $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
+                                                $stmt->bindParam(':email', $email);
+                                                $stmt->execute();
 
-        if ($stmt->rowCount() > 0) {
-            echo '<div class="alert alert-danger" role="alert" style="background-color: #2b5fb31f;">This email is already taken.</div>';
-        } else {
-            $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
-            $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':password', $password);
-            $stmt->execute();
+                                                if ($stmt->rowCount() > 0) {
+                                                    echo '<div class="alert alert-danger" role="alert" style="background-color: #2b5fb31f;">This email is already taken.</div>';
+                                                } else {
+                                                    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
+                                                    $stmt->bindParam(':username', $username);
+                                                    $stmt->bindParam(':email', $email);
+                                                    $stmt->bindParam(':password', $password);
+                                                    $stmt->execute();
 
-            $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username AND password = :password");
-            $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':password', $password);
-            $stmt->execute();
+                                                    $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username AND password = :password");
+                                                    $stmt->bindParam(':username', $username);
+                                                    $stmt->bindParam(':password', $password);
+                                                    $stmt->execute();
 
-            if ($stmt->rowCount() > 0) {
-                $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                $_SESSION['unique_id'] = $row['user_id'];
-                //header("Location:index.php");
-                echo "<meta http-equiv='refresh' content='0'>";
-            }
-        }
-    }
-}
-?> <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                                    if ($stmt->rowCount() > 0) {
+                                                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                                        $_SESSION['unique_id'] = $row['user_id'];
+                                                        //header("Location:index.php");
+                                                        echo "<meta http-equiv='refresh' content='0'>";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        ?> <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                             <!-- Username input -->
                                             <div class="d-flex justify-content-center" id="div1"></div>
                                             <div class="form-outline mb-4 input-group">
