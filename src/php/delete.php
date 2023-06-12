@@ -15,4 +15,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-header("Location:http://" . $_SERVER['HTTP_HOST']."/index.php");
+header("Location: ../index.php");
