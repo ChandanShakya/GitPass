@@ -32,9 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->execute();
 
 
-
-  //header("Location:index.php");
-  //header("Location:http://" . $_SERVER['HTTP_HOST']."/index.php");
   echo "<script>window.open('index.php','_self') </script>";
 }
 
