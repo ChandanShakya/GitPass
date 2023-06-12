@@ -14,7 +14,7 @@ $stmt->bindParam(':userId', $userId);
 $stmt->execute();
 $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$account_id = $_POST['account_id'];
+$account_id = $_SESSION['unique_id'];
 $stmt = $conn->prepare("SELECT previous_username,previous_password, changed_at FROM password_history WHERE account_id = :account_id ORDER BY changed_at DESC");
 $stmt->bindParam(':account_id', $account_id);
 $stmt->execute();
