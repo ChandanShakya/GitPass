@@ -19,11 +19,11 @@ function validatePassword() {
         document.getElementById("form4Example2").style.borderColor = "green";
     }
 }
+var submitButton = document.getElementById("send");
 
 function buttonEnabler() {
     var username = document.getElementById("form4Example1").value;
     var password = document.getElementById("form4Example2").value;
-    var submitButton = document.getElementById("send");
     if (username.trim() !== "" && password.trim() !== "") {
         submitButton.disabled = false;
     } else {
