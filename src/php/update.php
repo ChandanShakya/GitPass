@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once "../php/conn.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,10 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':prevPassword', $prevPassword);
         $stmt->execute();
 
-        $sql = "UPDATE social_accounts SET username = :username, password = :password WHERE account_id = :id";
+        $sql = "UPDATE social_accounts SET username = :username, password = AES_ENCRYPT(:password, :encryptionKey) WHERE account_id = :id";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':encryptionKey', $_SESSION['password']);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }

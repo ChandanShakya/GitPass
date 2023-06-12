@@ -9,8 +9,9 @@ include_once "php/head.php";
 include_once "php/conn.php";
 
 $userId = $_SESSION['unique_id'];
-$stmt = $conn->prepare("SELECT sa.site, sa.title, sa.username, sa.password, sam.favorite, sam.metadata_id, sa.account_id, sa.user_id FROM social_accounts sa LEFT JOIN social_account_metadata sam ON sa.account_id = sam.account_id WHERE sa.user_id = :userId ORDER BY sam.favorite DESC, sa.username;");
+$stmt = $conn->prepare("SELECT sa.site, sa.title, sa.username, AES_DECRYPT(sa.password, :encryptionKey) AS password, sam.favorite, sam.metadata_id, sa.account_id, sa.user_id FROM social_accounts sa LEFT JOIN social_account_metadata sam ON sa.account_id = sam.account_id WHERE sa.user_id = :userId ORDER BY sam.favorite DESC, sa.username;");
 $stmt->bindParam(':userId', $userId);
+$stmt->bindParam(':encryptionKey', $_SESSION['password']);
 $stmt->execute();
 $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -144,22 +145,22 @@ $conn = null;
             </form>
         </div>
     </div>
-    <script>
-  var originalUsername' . $counter . ' = "' . $item['username'] . '";
-  var originalPassword' . $counter . ' = "' . $item['password'] . '";
+                                        <script>
+                                    var originalUsername' . $counter . ' = "' . $item['username'] . '";
+                                    var originalPassword' . $counter . ' = "' . $item['password'] . '";
 
-  function checkChanges' . $counter . '() {
-    var usernameField = document.getElementById("username-' . $counter . '");
-    var passwordField = document.getElementById("password-' . $counter . '");
+                                    function checkChanges' . $counter . '() {
+                                        var usernameField = document.getElementById("username-' . $counter . '");
+                                        var passwordField = document.getElementById("password-' . $counter . '");
 
-    if (usernameField.value === originalUsername' . $counter . ' && passwordField.value === originalPassword' . $counter . ') {
-      document.getElementById("UpdateBox-' . $counter . '").style.display = "none";
-    } else {
-      document.getElementById("UpdateBox-' . $counter . '").style.display = "block";
-    }
-  }
-  checkChanges' . $counter . '();
-</script>';
+                                        if (usernameField.value === originalUsername' . $counter . ' && passwordField.value === originalPassword' . $counter . ') {
+                                        document.getElementById("UpdateBox-' . $counter . '").style.display = "none";
+                                        } else {
+                                        document.getElementById("UpdateBox-' . $counter . '").style.display = "block";
+                                        }
+                                    }
+                                    checkChanges' . $counter . '();
+                                    </script>';
                                         $counter++;
                                     }
                                 }
@@ -173,7 +174,6 @@ $conn = null;
             <!---->
         </div>
         <script type="text/javascript" src="js/showPw.js"></script>
-        <script type="text/javascript" src="js/update.js"></script>
         <?php
         include_once "php/footer.php";
         ?>

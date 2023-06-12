@@ -9,11 +9,14 @@ CREATE TABLE
         user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(30) NOT NULL,
         email VARCHAR(100) NOT NULL,
-        password VARCHAR(255) NOT NULL,
+        password VARBINARY(255) NOT NULL,
+        salt VARBINARY(255) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         UNIQUE (username),
         UNIQUE (email)
     );
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `salt`, `created_at`) VALUES
+(1, 'chandan', 'chandan@gmail.com', 0xe79445eedd73f4bb9716e734ed226d9c, 0xffe7639938b888e5a13357a45a363fedc5a989793de17724, '2023-06-12 21:54:29');
 
 CREATE TABLE
     social_accounts (
@@ -22,7 +25,7 @@ CREATE TABLE
         title VARCHAR(255) NOT NULL,
         site VARCHAR(255) NOT NULL,
         username VARCHAR(100) NOT NULL,
-        password VARCHAR(300) NOT NULL,
+        password VARBINARY(255) NOT NULL,
         FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
         INDEX (user_id)
     );
@@ -49,7 +52,7 @@ CREATE TABLE
         history_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         account_id INT NOT NULL,
         previous_username VARCHAR(100) NOT NULL,
-        previous_password VARCHAR(255) NOT NULL,
+        previous_password VARBINARY(255) NOT NULL,
         changed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (account_id) REFERENCES social_accounts (account_id) ON DELETE CASCADE,
         INDEX (account_id)
@@ -66,87 +69,3 @@ CREATE TABLE
         UNIQUE (session_id),
         INDEX (user_id)
     );
-
-INSERT INTO
-    users (username, email, password)
-VALUES (
-        'johndoe',
-        'johndoe@gmail.com',
-        'password123'
-    ), (
-        'janedoe',
-        'janedoe@yahoo.com',
-        'qwerty456'
-    ), (
-        'bobsmith',
-        'bobsmith@hotmail.com',
-        'letmein789'
-    );
-
-INSERT INTO
-    social_accounts (
-        user_id,
-        title,
-        site,
-        username,
-        password
-    )
-VALUES (
-        1,
-        'Facebook',
-        'https://www.facebook.com',
-        'johndoe',
-        'fbpass123'
-    ), (
-        1,
-        'Twitter',
-        'https://www.twitter.com',
-        'johndoe',
-        'twitterpass456'
-    ), (
-        2,
-        'Instagram',
-        'https://www.instagram.com',
-        'janedoe',
-        'instapass789'
-    ), (
-        2,
-        'LinkedIn',
-        'https://www.linkedin.com',
-        'janedoe',
-        'linkedinpass123'
-    ), (
-        3,
-        'GitHub',
-        'https://www.github.com',
-        'bobsmith',
-        'githubpass456'
-    );
-
-INSERT INTO
-    social_account_metadata (account_id, favorite)
-VALUES (1, true), (2, false), (3, true), (4, true), (5, false);
-
-INSERT INTO
-    password_history (
-        account_id,
-        previous_username,
-        previous_password
-    )
-VALUES (1, 'johndoe', 'fbpass123'), (1, 'johndoe', 'newfbpass456'), (
-        1,
-        'johndoe',
-        'newestfbpass789'
-    ), (2, 'johndoe', 'twitterpass456'), (
-        2,
-        'johndoe',
-        'newtwitterpass789'
-    ), (3, 'janedoe', 'instapass789'), (
-        3,
-        'janedoe',
-        'newinstapass123'
-    ), (
-        4,
-        'janedoe',
-        'linkedinpass123'
-    ), (5, 'bobsmith', 'githubpass456');

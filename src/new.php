@@ -18,16 +18,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = $_POST['username'];
   $password = $_POST['password'];
   $userId = $_SESSION['unique_id'];
+  $key = $_SESSION['password'];
 
-  $stmt = $conn->prepare("INSERT INTO social_accounts (title, site, username, password, user_id) VALUES (:title, :site, :username, AES_ENCRYPT(:password, :sessionPassword), :userId);");
+  $stmt = $conn->prepare("INSERT INTO social_accounts (title, site, username, password, user_id) VALUES (:title, :site, :username, AES_ENCRYPT(:password, :encryptionKey), :userId);");
   $stmt->bindParam(':title', $title);
   $stmt->bindParam(':site', $site);
   $stmt->bindParam(':username', $username);
   $stmt->bindParam(':password', $password);
   $stmt->bindParam(':userId', $userId);
-  $stmt->bindParam(':sessionPassword', $_SESSION['password']);
+  $stmt->bindParam(':encryptionKey', $key);
   $stmt->execute();
-  
+
 
   $account_id = $conn->lastInsertId();
   $stmt = $conn->prepare("INSERT INTO social_account_metadata(account_id) VALUES (:account_id);");

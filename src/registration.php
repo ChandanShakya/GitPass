@@ -73,6 +73,12 @@ include_once "php/conn.php";
                                             $password = $_POST['password'];
 
 
+                                            $salt = random_bytes(24);
+
+                                            $iterations = 10000;
+                                            $keyLength = 24;
+
+                                            $key = hash_pbkdf2("sha256", $password, $salt, $iterations, $keyLength, true);
                                             $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
                                             $stmt->bindParam(':username', $username);
                                             $stmt->execute();
@@ -87,22 +93,15 @@ include_once "php/conn.php";
                                                 if ($stmt->rowCount() > 0) {
                                                     echo '<div class="alert alert-danger" role="alert" style="background-color: #2b5fb31f;">This email is already taken.</div>';
                                                 } else {
-                                                    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
+                                                    $stmt = $conn->prepare("INSERT INTO users (username, email, password,salt) VALUES (:username, :email, AES_ENCRYPT(:password, :encryptionKey) ,:salt)");
                                                     $stmt->bindParam(':username', $username);
                                                     $stmt->bindParam(':email', $email);
                                                     $stmt->bindParam(':password', $password);
+                                                    $stmt->bindParam(':encryptionKey', $key);
+                                                    $stmt->bindParam(':salt', $salt);
                                                     $stmt->execute();
-
-                                                    $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username AND password = :password");
-                                                    $stmt->bindParam(':username', $username);
-                                                    $stmt->bindParam(':password', $password);
-                                                    $stmt->execute();
-                                                    if ($stmt->rowCount() > 0) {
-                                                        echo "<meta http-equiv='refresh' content='0;url=login.php'>";
-                                                        exit();
-                                                    }
-                                                    
-                                                    
+                                                    echo "<meta http-equiv='refresh' content='0;url=login.php'>";
+                                                    exit();
                                                 }
                                             }
                                         }

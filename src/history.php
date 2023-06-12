@@ -10,8 +10,9 @@ include_once "php/conn.php";
 
 $userId = $_SESSION['unique_id'];
 $account_id = $_POST['hisid'];
-$stmt = $conn->prepare("SELECT previous_username,previous_password, changed_at FROM password_history WHERE account_id = :account_id ORDER BY changed_at DESC");
+$stmt = $conn->prepare("SELECT previous_username, AES_DECRYPT(previous_password, :encryptionKey) AS previous_password, changed_at FROM password_history WHERE account_id = :account_id ORDER BY changed_at DESC");
 $stmt->bindParam(':account_id', $account_id);
+$stmt->bindParam(':encryptionKey', $_SESSION['password']);
 $stmt->execute();
 $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $conn = null;
@@ -68,7 +69,7 @@ $conn = null;
                             </div>
                           </div>
                           <hr class="mt-2">
-                          <form method="post" class="me-4" action="php/update.php" id="update-' . $item['account_id'] . '">
+                          <form method="post" class="me-4">
                             <div class="row px-3">
                                 <div class="col-lg-6 col-md-12 mb-lg-0 mb-2">
                                     <label for="username-' . $counter . '" class="form-label">Username</label>
