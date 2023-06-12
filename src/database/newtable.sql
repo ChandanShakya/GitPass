@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS id18657476_gitpass;
 CREATE DATABASE id18657476_gitpass;
 
 USE id18657476_gitpass;
@@ -20,10 +21,11 @@ CREATE TABLE
         title VARCHAR(255) NOT NULL,
         site VARCHAR(255) NOT NULL,
         username VARCHAR(100) NOT NULL,
-        password VARCHAR(100) NOT NULL,
+        password VARCHAR(255) NOT NULL,
         FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
         INDEX (user_id)
     );
+ALTER TABLE social_accounts MODIFY password VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE
     social_account_tags (
