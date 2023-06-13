@@ -1,6 +1,20 @@
 .align-center {
     text-align: center;
 }
+
 .disclaimer {
     display: none;
+}
+
+[href^="https://www.000webhost.com/"] {
+    display: none;
+}
+
+.containerd {
+    display: flex;
+    justify-content: center;
+}
+
+.text-centerd {
+    display: inline-flex;
 }

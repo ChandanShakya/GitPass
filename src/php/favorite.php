@@ -3,8 +3,10 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = $_POST['favid'];
-        $sql = mysqli_query($conn, "UPDATE passwords SET favorite = NOT favorite WHERE id = $id;");
+        $stmt = $conn->prepare("UPDATE social_account_metadata SET favorite = NOT favorite WHERE metadata_id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
     }
 
-    header("Location:http://" . $_SERVER['HTTP_HOST']."/index.php");
+    header("Location: ../index.php");
 ?>

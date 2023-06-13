@@ -1,10 +1,18 @@
 <?php 
-    include_once "../php/conn.php";
+include_once "../php/conn.php";
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $id = $_POST['delid'];
-        $sql = mysqli_query($conn, "DELETE FROM passwords WHERE id = $id;");
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = $_POST['delid'];
+    try {
+        $conn->beginTransaction();
+        $stmt = $conn->prepare("DELETE FROM social_accounts WHERE account_id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $conn->commit();
+    } catch (PDOException $e) {
+        $conn->rollBack();
+        echo "Error: " . $e->getMessage();
     }
+}
 
-    header("Location:http://" . $_SERVER['HTTP_HOST']."/index.php");
-?>
+header("Location: ../index.php");
