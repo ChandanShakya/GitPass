@@ -105,7 +105,8 @@ include_once "php/conn.php";
                                                 }
                                             }
                                         }
-                                        ?> <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                        ?> 
+                                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                             <!-- Username input -->
                                             <div class="d-flex justify-content-center" id="div1"></div>
                                             <div class="form-outline mb-4 input-group">
