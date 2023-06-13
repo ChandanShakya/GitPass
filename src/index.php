@@ -54,9 +54,7 @@ $conn = null;
                                         <span>Dashboard</span>
                                     </h1>
                                 </div>
-                                <div class="col-2 ml-1">
-                                    <a href="profile.php?id=<?php echo $_SESSION['unique_id']; ?>"><button class="btn btn-primary mb-2 "><i class="fas fa-user"></i></button></a>
-                                </div>
+                               
                                 <div class="col-1 ml-1">
                                     <a href="logout.php?id=<?php echo $_SESSION['unique_id']; ?>"><button class="btn btn-danger mb-2 "><i class="fas fa-sign-out-alt"></i></button></a>
                                 </div>
