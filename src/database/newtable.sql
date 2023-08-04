@@ -57,96 +57,12 @@ CREATE TABLE
 
 CREATE TABLE
     login_track (
-        session_id INT NOT NULL PRIMARY KEY,
+        session_id VARCHAR(31) NOT NULL PRIMARY KEY,
         user_id INT NOT NULL,
         login_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        logout_time TIMESTAMP,
+        logout_time TIMESTAMP NULL DEFAULT NULL,
         duration INT DEFAULT NULL,
         FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE,
         UNIQUE (session_id),
         INDEX (user_id)
     );
-
-INSERT INTO
-    users (username, email, password)
-VALUES (
-        'johndoe',
-        'johndoe@gmail.com',
-        'password123'
-    ), (
-        'janedoe',
-        'janedoe@yahoo.com',
-        'qwerty456'
-    ), (
-        'bobsmith',
-        'bobsmith@hotmail.com',
-        'letmein789'
-    );
-
-INSERT INTO
-    social_accounts (
-        user_id,
-        title,
-        site,
-        username,
-        password
-    )
-VALUES (
-        1,
-        'Facebook',
-        'https://www.facebook.com',
-        'johndoe',
-        'fbpass123'
-    ), (
-        1,
-        'Twitter',
-        'https://www.twitter.com',
-        'johndoe',
-        'twitterpass456'
-    ), (
-        2,
-        'Instagram',
-        'https://www.instagram.com',
-        'janedoe',
-        'instapass789'
-    ), (
-        2,
-        'LinkedIn',
-        'https://www.linkedin.com',
-        'janedoe',
-        'linkedinpass123'
-    ), (
-        3,
-        'GitHub',
-        'https://www.github.com',
-        'bobsmith',
-        'githubpass456'
-    );
-
-INSERT INTO
-    social_account_metadata (account_id, favorite)
-VALUES (1, true), (2, false), (3, true), (4, true), (5, false);
-
-INSERT INTO
-    password_history (
-        account_id,
-        previous_username,
-        previous_password
-    )
-VALUES (1, 'johndoe', 'fbpass123'), (1, 'johndoe', 'newfbpass456'), (
-        1,
-        'johndoe',
-        'newestfbpass789'
-    ), (2, 'johndoe', 'twitterpass456'), (
-        2,
-        'johndoe',
-        'newtwitterpass789'
-    ), (3, 'janedoe', 'instapass789'), (
-        3,
-        'janedoe',
-        'newinstapass123'
-    ), (
-        4,
-        'janedoe',
-        'linkedinpass123'
-    ), (5, 'bobsmith', 'githubpass456');

@@ -32,7 +32,7 @@ CREATE TABLE
 
 CREATE TABLE
     social_account_tags (
-        account_id INT NOT NULL PRIMARY KEY,
+        account_id INT NOT NULL,
         tag_name VARCHAR(100) NOT NULL,
         FOREIGN KEY (account_id) REFERENCES social_accounts(account_id) ON DELETE CASCADE
     );
@@ -60,7 +60,7 @@ CREATE TABLE
 
 CREATE TABLE
     login_track (
-        session_id INT NOT NULL PRIMARY KEY,
+        session_id VARCHAR(31) NOT NULL PRIMARY KEY,
         user_id INT NOT NULL,
         login_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         logout_time TIMESTAMP NULL,

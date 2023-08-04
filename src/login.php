@@ -88,8 +88,18 @@ include_once "php/conn.php";
                                                     $stmt->execute();
                                                     if ($stmt->rowCount() > 0) {
                                                         $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                                        
                                                         $_SESSION['unique_id'] = $row['user_id'];
                                                         $_SESSION['username'] = $row['username'];
+                                                        // Fill in the values into login_track
+                                                        $user_id = $row['user_id'];
+                                                        $session_id = session_id();
+                                                        $stmt = $conn->prepare("INSERT INTO login_track (session_id, user_id) VALUES (:session_id,:user_id)");
+                                                        $stmt->bindParam(':session_id', $session_id);
+                                                        $stmt->bindParam(':user_id', $user_id);
+                                                        $stmt->execute();
+
                                                         // Decrypt the password using the stored salt
                                                         $salt = $row['salt']; // Convert the stored salt back to binary
                                                         $iterations = 10000;

@@ -35,6 +35,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->bindParam(':account_id', $account_id);
   $stmt->execute();
 
+  // Insert tags into the social_account_tags table
+  if (isset($_POST['tags']) && !empty($_POST['tags'])) {
+    $tags = $_POST['tags'];
+    // Split tags by comma and trim whitespace
+    $tagsArray = array_map('trim', explode(',', strtolower($tags)));
+    $stmt = $conn->prepare("INSERT INTO social_account_tags (account_id, tag_name) VALUES (:account_id, :tag_name);");
+    foreach ($tagsArray as $tag) {
+      $stmt->bindParam(':account_id', $account_id);
+      $stmt->bindParam(':tag_name', $tag);
+      $stmt->execute();
+    }
+  }
 
   echo "<script>window.open('index.php','_self') </script>";
 }
@@ -58,6 +70,7 @@ $conn = null; // close the database connection
               background-color: hsl(218, 41%, 15%);
               background-image: radial-gradient(650px circle at 0% 0%, hsl(218, 41%, 35%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%), radial-gradient(1250px circle at 100% 100%, hsl(218, 41%, 45%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%);
               height: 100vh;
+              background-attachment: fixed;
             }
           </style> <!-- Gradient Background -->
           <!-- Features -->
@@ -128,6 +141,18 @@ $conn = null; // close the database connection
                           <div class="form-notch-trailing"></div>
                         </div>
 
+                      </div>
+
+                      <!-- Account Tags input -->
+                      <div class="form-outline mb-4 input-group">
+                        <span class="input-group-text" style="width: 2.5em;"><i class="fas fa-tags"></i></span>
+                        <input type="text" id="form4Example5" class="form-control" name="tags" oninput="validateTags();validateForm()">
+                        <label class="form-label" for="form4Example5" style="margin-left: 0px;">Account Tags (comma-separated)</label>
+                        <div class="form-notch">
+                          <div class="form-notch-leading" style="width: 9px;"></div>
+                          <div class="form-notch-middle" style="width: 88.8px;"></div>
+                          <div class="form-notch-trailing"></div>
+                        </div>
                       </div>
 
                       <!-- Idea -->
