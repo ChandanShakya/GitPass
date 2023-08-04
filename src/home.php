@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-if (isset($_SESSION['unique_id'])) {
-    header("Location:index.php");
-}
-
 include_once "php/head.php";
 include_once "php/conn.php";
 ?>
@@ -37,8 +33,18 @@ include_once "php/conn.php";
                                 </h1>
                                 <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">GitPass remembers them all for you.<br>Save your passwords and log into site with a single click.<br>It's that easy.</p>
 
-                                <a class="btn   btn-primary btn-lg py-3 px-5 mb-2 mb-md-0 me-md-2" data-ripple-color="primary" href="login.php" role="button" aria-controls="#picker-editor">Login</a>
-                                <a class="btn   btn-outline-secondary btn-lg py-3 px-5 mb-2 mb-md-0 me-md-2 text-white" style="background-color: transparent" href="registration.php" role="button" aria-controls="#picker-editor">Register</a>
+                                <?php if (!isset($_SESSION['unique_id'])) {
+                                ?>
+
+                                    <a class="btn   btn-primary btn-lg py-3 px-5 mb-2 mb-md-0 me-md-2" data-ripple-color="primary" href="login.php" role="button" aria-controls="#picker-editor">Login</a>
+                                    <a class="btn   btn-outline-secondary btn-lg py-3 px-5 mb-2 mb-md-0 me-md-2 text-white" style="background-color: transparent" href="registration.php" role="button" aria-controls="#picker-editor">Register</a>
+                                <?php
+                                } else { ?>
+                                    <div class="d-flex justify-content-center">
+                                        <a class="btn btn-primary btn-lg py-3 px-5 mb-2 mb-md-0 me-md-2" data-ripple-color="primary" href="index.php" role="button" aria-controls="#picker-editor">Dashboard</a>
+                                    </div>
+                                <?php
+                                } ?>
                             </div>
                             <div class="col-lg-6 mb-5 mb-lg-0"> <img src="https://raw.githubusercontent.com/ZXY-CC-3ag13/GitPass/main/src/img/brand.svg" class="w-100 rounded-4" alt="Logo" aria-controls="#picker-editor" style="width:50vw;height:50vh"> </div>
                         </div>

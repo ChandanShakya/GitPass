@@ -55,7 +55,7 @@ $conn = null;
                                     </h1>
                                 </div>
                                
-                                <div class="col-1 ml-1">
+                                <div class="col-3">
                                     <a href="logout.php?id=<?php echo $_SESSION['unique_id']; ?>"><button class="btn btn-danger mb-2 "><i class="fas fa-sign-out-alt"></i></button></a>
                                 </div>
                             </div>
