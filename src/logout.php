@@ -4,7 +4,7 @@ require_once "php/conn.php";
 
 if (isset($_SESSION['unique_id']) && isset($_GET['id']) && $_GET['id'] == $_SESSION['unique_id']) {
     $id = $_GET['id'];
-    $session_id = session_id();
+    $session_id = $_SESSION['idvar'];
     $user_id = $_SESSION['unique_id'];
     $stmt = $conn->prepare("UPDATE login_track SET logout_time = CURRENT_TIMESTAMP, duration = TIME_TO_SEC(TIMEDIFF(CURRENT_TIMESTAMP, login_time)) WHERE session_id = :session_id AND user_id = :user_id");
     $stmt->bindParam(':session_id', $session_id);

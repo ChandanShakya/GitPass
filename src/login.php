@@ -95,6 +95,7 @@ include_once "php/conn.php";
                                                         // Fill in the values into login_track
                                                         $user_id = $row['user_id'];
                                                         $session_id = session_id();
+                                                        $_SESSION['idvar']=$session_id;
                                                         $stmt = $conn->prepare("INSERT INTO login_track (session_id, user_id) VALUES (:session_id,:user_id)");
                                                         $stmt->bindParam(':session_id', $session_id);
                                                         $stmt->bindParam(':user_id', $user_id);
