@@ -4,6 +4,13 @@ CREATE DATABASE id18657476_gitpass;
 
 USE id18657476_gitpass;
 
+DROP TABLE IF EXISTS login_track;
+DROP TABLE IF EXISTS password_history;
+DROP TABLE IF EXISTS social_account_metadata;
+DROP TABLE IF EXISTS social_account_tags;
+DROP TABLE IF EXISTS social_accounts;
+DROP TABLE IF EXISTS users;
+
 CREATE TABLE
     users (
         user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
