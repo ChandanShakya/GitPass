@@ -53,20 +53,19 @@ $conn = null;
 
                     <form name="history" id="history" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
-                    <?php
-                    $counter = 1;
-                    if (empty($array)) {
-                      echo '<div class="alert alert-info">No old history</div>';
-                  } else {
-                    foreach ($array as $item) {
-                    // favorite starts
-                    echo '
+                      <?php
+                      $counter = 1;
+                      if (empty($array)) {
+                        echo '<div class="alert alert-info">No old history</div>';
+                      } else {
+                        foreach ($array as $item) {
+                          // favorite starts
+                          echo '
                     <div class="card mt-3" style="background-color: hsla(0, 0%, 100%, 0.9) !important; backdrop-filter: saturate(200%) blur(25px);">
                         <div class="card-body">
                             <div class="row mx-3">
-                                <div class="col-10"><h5>' . $item["changed_at"] . '</h5></div>
-                                <div class="col-2 d-flex justify-content-between">
-                            </div>
+                                <div class="col-12"><h5>' . $item["changed_at"] . '</h5></div>
+                                
                           </div>
                           <hr class="mt-2">
                           <form method="post" class="me-4">
@@ -88,11 +87,11 @@ $conn = null;
                           </form>
                         </div>
                       </div>';
-                    }
-                      $counter++;
-                    }
-                    ?>
-                    
+                        }
+                        $counter++;
+                      }
+                      ?>
+
                       <div class="row mt-3">
                         <div class="center">
                           <!-- Back Button-->
