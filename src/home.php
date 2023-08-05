@@ -40,9 +40,7 @@ include_once "php/conn.php";
                                     <a class="btn   btn-outline-secondary btn-lg py-3 px-5 mb-2 mb-md-0 me-md-2 text-white" style="background-color: transparent" href="registration.php" role="button" aria-controls="#picker-editor">Register</a>
                                 <?php
                                 } else { ?>
-                                    <div class="d-flex justify-content-center">
                                         <a class="btn btn-primary btn-lg py-3 px-5 mb-2 mb-md-0 me-md-2" data-ripple-color="primary" href="index.php" role="button" aria-controls="#picker-editor">Dashboard</a>
-                                    </div>
                                 <?php
                                 } ?>
                             </div>
