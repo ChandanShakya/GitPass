@@ -1,0 +1,28 @@
+{
+  "name": "gitpass",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "api",
+    "web"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w web",
+    "dev:api": "npm run dev -w api",
+    "test": "npm run test -w @gitpass/crypto",
+    "build": "npm run build -w @gitpass/crypto && npm run build -w web",
+    "deploy:web": "npm run build -w web && npm run deploy -w web",
+    "deploy:api": "npm run deploy -w api"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  },
+  "allowScripts": {
+    "sharp@0.33.5": true,
+    "workerd@1.20250718.0": true,
+    "esbuild@0.24.2": true,
+    "esbuild@0.17.19": true,
+    "esbuild@0.21.5": true
+  }
+}

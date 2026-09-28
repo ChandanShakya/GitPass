@@ -1,0 +1,78 @@
+/*
+ * Design tokens, copied 1:1 from the Figma file's `gp/*` variable
+ * collections (see docs/DESIGN.md). Keep these two files in sync by hand —
+ * there are only ~15 colors, not worth a sync pipeline yet.
+ */
+:root {
+  --gp-bg: #fafafa;
+  --gp-surface: #ffffff;
+  --gp-surface-alt: #f7f7fe;
+  --gp-primary: #4137b0;
+  --gp-primary-soft: #f1efff;
+  --gp-on-primary: #ffffff;
+  --gp-text: #363535;
+  --gp-text-muted: #6b6a7a;
+  --gp-border: #e6e4f2;
+  --gp-success: #1e9e5a;
+  --gp-success-soft: #e6f6ee;
+  --gp-warn: #b7791f;
+  --gp-warn-soft: #fff4dc;
+  --gp-danger: #d93a3a;
+  --gp-danger-soft: #fdecec;
+
+  --gp-space-1: 4px;
+  --gp-space-2: 8px;
+  --gp-space-3: 12px;
+  --gp-space-4: 16px;
+  --gp-space-6: 24px;
+  --gp-space-8: 32px;
+
+  --gp-radius-sm: 8px;
+  --gp-radius-md: 12px;
+  --gp-radius-lg: 16px;
+  --gp-radius-pill: 999px;
+
+  --gp-font: "Nunito", system-ui, -apple-system, sans-serif;
+  --gp-font-mono: "Roboto Mono", ui-monospace, monospace;
+
+  /* Figma breakpoints: mobile 375, tablet 768, desktop 1440 */
+  --gp-bp-tablet: 768px;
+  --gp-bp-desktop: 1440px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --gp-bg: #0f0e17;
+    --gp-surface: #1a1930;
+    --gp-surface-alt: #232244;
+    --gp-primary: #8b84f5;
+    --gp-primary-soft: #2d2a5c;
+    --gp-on-primary: #0f0e17;
+    --gp-text: #f2f2f7;
+    --gp-text-muted: #a6a5b8;
+    --gp-border: #33314f;
+    --gp-success: #4cd08a;
+    --gp-success-soft: #173a2b;
+    --gp-warn: #f0b84a;
+    --gp-warn-soft: #3d3117;
+    --gp-danger: #ff7a7a;
+    --gp-danger-soft: #3f1d22;
+  }
+}
+:root[data-theme="dark"] {
+  --gp-bg: #0f0e17;
+  --gp-surface: #1a1930;
+  --gp-surface-alt: #232244;
+  --gp-primary: #8b84f5;
+  --gp-primary-soft: #2d2a5c;
+  --gp-on-primary: #0f0e17;
+  --gp-text: #f2f2f7;
+  --gp-text-muted: #a6a5b8;
+  --gp-border: #33314f;
+  --gp-success: #4cd08a;
+  --gp-success-soft: #173a2b;
+  --gp-warn: #f0b84a;
+  --gp-warn-soft: #3d3117;
+  --gp-danger: #ff7a7a;
+  --gp-danger-soft: #3f1d22;
+}

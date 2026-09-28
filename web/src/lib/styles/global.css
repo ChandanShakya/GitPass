@@ -1,0 +1,118 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--gp-bg);
+  color: var(--gp-text);
+  font-family: var(--gp-font);
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  min-height: 100dvh;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+input,
+textarea {
+  font-family: inherit;
+}
+a {
+  color: inherit;
+}
+
+/* type scale, mirrors gp/Display..gp/Micro text styles */
+.gp-display {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 34px;
+}
+.gp-h1 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+}
+.gp-h2 {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.gp-body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.gp-body-strong {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
+.gp-caption {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--gp-text-muted);
+}
+.gp-label {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+}
+.gp-micro {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+}
+.gp-mono {
+  font-family: var(--gp-font-mono);
+  font-size: 14px;
+}
+
+/*
+ * Mobile-first: the default (no media query) is the 375px phone layout,
+ * matching the design. Wider layouts are explicit opt-ins below.
+ */
+.gp-app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+.gp-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--gp-space-4);
+  gap: var(--gp-space-4);
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .gp-screen {
+    max-width: 640px;
+    padding: var(--gp-space-6) var(--gp-space-8);
+  }
+}
+
+@media (min-width: 1440px) {
+  .gp-app.gp-app--shell {
+    flex-direction: row;
+  }
+  .gp-screen {
+    max-width: 1100px;
+    padding: var(--gp-space-8) 40px;
+  }
+}
