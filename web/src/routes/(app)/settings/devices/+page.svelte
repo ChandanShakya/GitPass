@@ -30,7 +30,7 @@
           <span class="gp-body-strong">{d.device_name}</span>
           <span class="gp-caption">last active {new Date(d.last_seen_at).toLocaleString()}</span>
         </div>
-        {#if i === 0}<Badge kind="intact">This device</Badge>{:else}<Button variant="danger" onclick={() => revoke(d.id)}>Sign out</Button>{/if}
+        {#if i === 0}<Badge kind="intact">This device</Badge>{:else}<Button variant="danger" fullWidth={false} onclick={() => revoke(d.id)}>Sign out</Button>{/if}
       </div>
     {/each}
   </div>

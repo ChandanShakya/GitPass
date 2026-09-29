@@ -56,7 +56,7 @@
             <span class="gp-caption">deleted {daysAgo(item.deletedAt)} days ago</span>
           </div>
           <Badge kind="neutral">{30 - daysAgo(item.deletedAt)}d left</Badge>
-          <Button variant="secondary" onclick={() => restore(item.id)}>Restore</Button>
+          <Button variant="secondary" fullWidth={false} onclick={() => restore(item.id)}>Restore</Button>
         </div>
       {/each}
     </div>

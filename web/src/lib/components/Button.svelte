@@ -3,24 +3,28 @@
     variant = "primary",
     type = "button",
     disabled = false,
+    fullWidth = true,
     onclick,
     children,
   }: {
     variant?: "primary" | "secondary" | "ghost" | "danger";
     type?: "button" | "submit";
     disabled?: boolean;
+    /** false for a compact inline button next to other content in a row (e.g. a list row's action) — default true matches the design's full-width form/detail buttons. */
+    fullWidth?: boolean;
     onclick?: (e: MouseEvent) => void;
     children: () => any;
   } = $props();
 </script>
 
-<button class="gp-btn gp-btn--{variant}" {type} {disabled} {onclick}>
+<button class="gp-btn gp-btn--{variant}" class:gp-btn--auto={!fullWidth} {type} {disabled} {onclick}>
   {@render children()}
 </button>
 
 <style>
   .gp-btn {
     width: 100%;
+    flex-shrink: 0;
     min-height: 48px;
     padding: 12px 24px;
     border-radius: var(--gp-radius-md);
@@ -56,5 +60,10 @@
   .gp-btn--danger {
     background: var(--gp-danger-soft);
     color: var(--gp-danger);
+  }
+  .gp-btn--auto {
+    width: auto;
+    padding: 10px 16px;
+    min-height: 40px;
   }
 </style>

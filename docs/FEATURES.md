@@ -18,6 +18,7 @@ These are real: client-side encryption, a live Cloudflare Worker API, D1 storage
 - **Password generator** — length slider, character-class toggles, fully client-side.
 - **Devices** — list of signed-in sessions with a name and last-seen time, per-device sign-out (revokes that session's refresh token server-side).
 - **Privacy page** — the actual plain-language "what we collect / what we can see" copy from the design.
+- **Real brand logo** — `BrandLogo.svelte` is an exact trace of the Figma "brand" component's icon (not a placeholder), theme-aware via CSS tokens.
 
 ## 🧩 Designed, not wired up yet
 
@@ -27,9 +28,12 @@ These have Figma screens and are on the milestone list in `docs/WEB_PLAN.md`, bu
 - **Health check** — weak/reused/breached detection (HIBP k-anonymity lookup).
 - **Two-factor authentication / passkeys.**
 - **Auto-lock timer** — the design calls for locking after 5 minutes idle; not implemented.
-- **Admin dashboard** — metadata-only KPIs and anonymized user management.
 - **Account export / delete.**
 - **Browser extension, mobile apps** — web only for now, per the current scope.
+
+## 🛠 Admin (`/admin`)
+
+Built to match the Figma admin screens (Overview, Users, Incidents, Settings), all four with real navigation between them and a mobile-first layout (bottom tab bar under 900px, sidebar above it) — but there is **no admin API, no admin role, and no auth guard on `/admin` yet**. Every number and row is sample data hardcoded in the page, clearly commented as such. Anyone who can reach the URL can see it; do not deploy this as-is if that matters. Turning it into a real feature needs: an `is_admin` flag or separate role table, an auth check in `/admin/+layout.ts` (or server-side), and API endpoints backing the KPIs/user list/incident feed instead of the current hardcoded arrays.
 
 ## Mobile-first, for real
 
